@@ -1,0 +1,17 @@
+- agent:
+    name: "summarizer"
+    system_prompt:
+      role: system
+      content: "Please summarize the following content: {file_content}"
+
+- function:
+    name: "summarize_file"
+    description: "Given the content of a file, summarize it"
+    parameters:
+      type: "object"
+      properties:
+        summary:
+          type: "string"
+          description: "summary"
+      required:
+        - "summary"
