@@ -2,6 +2,7 @@ import openai
 from environs import Env
 from news_agents.agents.summarizer_agent import SummarizerAgent
 from news_agents.llms.openai_gpt import OpenAIGPT
+from news_agents.workflow.runs import run_main_loop
 
 if __name__ == "__main__":
     env = Env()
