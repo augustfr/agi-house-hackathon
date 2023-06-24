@@ -1,4 +1,3 @@
-import os
 import json
 from news_agents.agents.agent import Agent
 
@@ -6,11 +5,6 @@ from news_agents.agents.agent import Agent
 class SummarizerAgent(Agent):
     def __init__(self, **kwargs):
         Agent.__init__(self, **kwargs)
-
-    def read_file_content(self, file_path):
-        with open(file_path, "r") as file:
-            content = file.read()
-        return content
 
     def get_file_summary(self, file_content):
         messages = []
