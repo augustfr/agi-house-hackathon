@@ -1,0 +1,21 @@
+- agent:
+    name: "sorter"
+    system_prompt:
+      role: system
+      content: "You are an executive at a news broadcasting company.  Your job is to assess a list of news headlines, and decide which is the best headline, based on importance and timeliness, in each of three categories: international (non-sports news), domestic (non-sports news), and sports (domestic and international sports news).  Each headline will be shared with a specialist for that category. Here are the actual headlines: {headlines}"
+
+- function:
+    name: "sort_headlines"
+    description: "Given a list of news headlines, decide which specialists will evaluate the news item."
+    parameters:
+      type: "object"
+      properties:
+        specialist:
+          type: "string"
+          description: "specialist type"
+        headline:
+          type: "string"
+          description: "headline"
+      required:
+        - "specialist"
+        - "headline"
