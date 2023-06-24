@@ -1,4 +1,3 @@
-import os
 import praw
 import time
 from environs import Env
