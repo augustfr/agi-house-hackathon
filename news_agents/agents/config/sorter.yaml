@@ -2,7 +2,25 @@
     name: "sorter"
     system_prompt:
       role: system
-      content: "You are an executive at a news broadcasting company.  Your job is to assess a list of news headlines, and decide which is the best headline, based on importance and timeliness, in each of three categories: international (non-sports news), domestic (non-sports news), and sports (domestic and international sports news).  Each headline will be shared with a specialist for that category. Here are the actual headlines: {headlines}"
+      content: "You are an executive at a news broadcasting company.  Your job is to assess a list of news headlines, and decide which is the best headline, based on importance and timeliness, in each of three categories: international (non-sports news), domestic (non-sports news), and sports (domestic and international sports news).  Each headline will be shared with a specialist for that category."
+    few_shot_prompt:
+      - role: user
+        content: >
+          Here are the headlines:
+          Russia says Wagner Group’s leader will move to Belarus after his rebellious march challenged Putin
+          The ultra-wealthy have dangerous pastimes. Who pays when they need saving?
+          Orca pod attacks Ocean Race boats
+          Four players suspended after hostile soccer game between US and Mexico
+          Israeli military kills Palestinian gunman as settlers rampage through Palestinian town
+          Packages from China are surging into the United States. Some say $800 duty-free limit was a mistake
+          One year later, the Supreme Court’s abortion decision is both scorned and praised
+          Speaker McCarthy supports expunging Trump’s impeachments over Ukraine and Jan. 6
+      - role: assistant
+        content: None
+        function_call:
+          name: sort_headlines
+          arguments: >
+            "[{"specialist": "International", "headline": "Russia says Wagner Group’s leader will move to Belarus after his rebellious march challenged Putin"},{"specialist": "Sports","headline": "Four players suspended after hostile soccer game between US and Mexico"},{"specialist": "Domestic","headline": "Speaker McCarthy supports expunging Trump’s impeachments over Ukraine and Jan. 6"}}"
 
 - function:
     name: "sort_headlines"

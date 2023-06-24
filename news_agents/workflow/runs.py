@@ -15,12 +15,12 @@ However, on March 29, 2019, Dan Riccio, Apple’s senior vice president of Hardw
     )
 
     sorter_test = sorter.sort_headlines(
-        """Russia says Wagner Group’s leader will move to Belarus after his rebellious march challenged Putin
-The ultra-wealthy have dangerous pastimes. Who pays when they need saving?
-Orca pod attacks Ocean Race boats
-Four players suspended after hostile soccer game between US and Mexico
-Israeli military kills Palestinian gunman as settlers rampage through Palestinian town
-Packages from China are surging into the United States. Some say $800 duty-free limit was a mistake
-One year later, the Supreme Court’s abortion decision is both scorned and praised
-Speaker McCarthy supports expunging Trump’s impeachments over Ukraine and Jan. 6"""
+        """Fox News v Tucker Carlson: dispute rumbles on weeks after messy exit
+        2023 NCAA baseball bracket: Men's College World Series scores, schedule in Omaha
+        Skin moles that grow hair may offer treatment for baldness, study suggests
+        Prematch Reading | All the biggest news ahead of tonight's homestand finale against Toronto FC
+        News Flash • Hopewell Township, NJ • CivicEngage
+        Judge keeps no bond order for Ponte Vedra triple stabbing suspect
+        Glastonbury: Watch Lizzo, Lewis Capaldi and Rick Astley perform
+        """
     )

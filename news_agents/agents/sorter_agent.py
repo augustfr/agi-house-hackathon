@@ -7,11 +7,8 @@ class SorterAgent(Agent):
         Agent.__init__(self, **kwargs)
 
     def sort_headlines(self, headlines):
-        messages = []
-        replacements = {"headlines": headlines}
-        placeholders = ["headlines"]
-        messages = self.format_message_thread(replacements, placeholders)
-
+        messages = self.message_thread
+        self.update_message_thread("user", "Here are the headlines: " + headlines)
         completion = self.language_model.call(
             messages=messages,
             functions=[self.function],
