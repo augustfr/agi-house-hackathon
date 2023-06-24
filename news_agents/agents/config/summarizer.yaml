@@ -2,16 +2,16 @@
     name: "summarizer"
     system_prompt:
       role: system
-      content: "Please summarize the following content: {file_content}"
+      content: "You are a news copywriter at a news broadcasting company. Your job is to take a news article and summarize it in a way that a radio news broadcaster can read on the air, targeting a size of 160 words."
 
 - function:
     name: "summarize_file"
-    description: "Given the content of a file, summarize it"
+    description: "Given the body of an article, summarize it"
     parameters:
       type: "object"
       properties:
         summary:
           type: "string"
-          description: "summary"
+          description: "summary of the article"
       required:
         - "summary"

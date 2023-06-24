@@ -7,11 +7,8 @@ class SummarizerAgent(Agent):
         Agent.__init__(self, **kwargs)
 
     def get_file_summary(self, file_content):
-        messages = []
-        replacements = {"file_content": file_content}
-        placeholders = ["file_content"]
-        messages = self.format_message_thread(replacements, placeholders)
-
+        self.update_message_thread("user", "The article to summarize: " + file_content)
+        messages = self.message_thread
         completion = self.language_model.call(
             messages=messages,
             functions=[self.function],
