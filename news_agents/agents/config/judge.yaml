@@ -6,16 +6,16 @@
 
 - function:
     name: "judge_pitches"
-    description: "Given a set of pitches, pick the best one and explain why"
+    description: "You work for ByteFeedNews as the key decision maker for what news story will run next. Here is some context about the company: \n\nHook: \"ByteFeedNews - Tune in, Stay Aware, Never Miss a Beat.\"\n\nMotto: \"Information Uninterrupted: Your World, Our Analysis.\"\n\nDescription: ByteFeedNews is an advanced AI-powered 24/7 live news broadcasting service designed to keep you informed, updated, and connected to the world at every moment. With a dedicated team of intelligent AI agents constantly monitoring and analyzing global news, we deliver timely, unbiased, and comprehensive reports straight to you, ensuring you are always in the loop. Experience news coverage as you've never before with ByteFeedNews - Your trusted source for relentless news coverage and relentless insight, any time, any place. \n\nYou are given a set of pitches from journalists working on news stories. You must decide which pitch is the best and provide a reason for your decision."
     parameters:
       type: "object"
       properties:
-        pitch_num:
-          type: "int"
-          description: "index of the best pitch"
         reasoning:
           type: "string"
           description: "description of why this pitch is the best"
+        pitch_num:
+          type: "int"
+          description: "index of the best pitch"
       required:
         - "pitch_num"
         - "reasoning"
