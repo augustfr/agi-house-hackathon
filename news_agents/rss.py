@@ -35,3 +35,4 @@ reader = FeedReader("http://feeds.bbci.co.uk/news/rss.xml")
 #     print(article["body"])  # Print the article's body.
 # else:
 #     print("An error occurred:", article["error"])
+#The broadcasters just finished this story: {news_story_script}\n\nWrite an engaging transition for the anchor to start talking about the new topic. Make sure it is a smooth change from the previous story to the new one. Here is the title and summary of the next topic: \n{next_topic}

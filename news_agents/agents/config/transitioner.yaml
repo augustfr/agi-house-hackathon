@@ -1,0 +1,17 @@
+- agent:
+    name: "pitcher"
+    system_prompt:
+      role: system
+      content: "You are a writer at a news radio broadcasting company called ByteFeedNews."
+
+- function:
+    name: "write_transition"
+    description: "Return a smooth news anchor transition from the previous news story to the next story"
+    parameters:
+      type: "object"
+      properties:
+        transition:
+          type: "string"
+          description: "transition between news stories"
+      required:
+        - "transition"
