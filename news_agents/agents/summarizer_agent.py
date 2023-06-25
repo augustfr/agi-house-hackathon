@@ -24,18 +24,6 @@ class SummarizerAgent(Agent):
             print("==========RAW SUMMARIZER OUTPUT==========")
             print(response_content)
             print("\n==========END RAW SUMMARIZER OUTPUT==========")
-        # response_tokens = self.message_token_count(
-        #     {"role": "assistant", "content": response_content}
-        # )
-        # input_tokens = total_tokens - response_tokens
 
-        # log_data = {
-        #     "added_input": messages,
-        #     "input_tokens": input_tokens,
-        #     "completion": response_content,
-        #     "completion_tokens": response_tokens,
-        #     "full_prompt": messages,
-        # }
-        # save_log_to_file(log_data)
 
         return json.loads(response_content).get("summary")
