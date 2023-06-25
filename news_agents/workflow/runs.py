@@ -67,6 +67,8 @@ def run_main_loop(
             )
             speech_queue.add_text(transition["transition"], "Arnold")
 
+        speech_queue.start()
+
         for line in script:
             # get both keys as strings and values as strings
             for key, value in line.items():
