@@ -18,6 +18,8 @@ if __name__ == "__main__":
 
     MAX_TOKENS = env.int("MAX_TOKENS", 4000)
 
+    DEBUG_MODE = env.bool("DEBUG_MODE", False)
+
     main_lm = OpenAIGPT(
         model=MAIN_MODEL,
         temperature=OPENAI_TEMPERATURE,
@@ -28,7 +30,7 @@ if __name__ == "__main__":
         name="scripter",
         language_model=main_lm,
         max_tokens=MAX_TOKENS,
-        debug_mode=True,
+        debug_mode=DEBUG_MODE,
     )
 
     sorter = None
@@ -36,7 +38,7 @@ if __name__ == "__main__":
         name="sorter",
         language_model=main_lm,
         max_tokens=MAX_TOKENS,
-        debug_mode=True,
+        debug_mode=DEBUG_MODE,
     )
 
     pitcher = None
@@ -44,7 +46,7 @@ if __name__ == "__main__":
         name="pitcher",
         language_model=main_lm,
         max_tokens=MAX_TOKENS,
-        debug_mode=True,
+        debug_mode=DEBUG_MODE,
     )
 
     judge = None
@@ -52,7 +54,7 @@ if __name__ == "__main__":
         name="judge",
         language_model=main_lm,
         max_tokens=MAX_TOKENS,
-        debug_mode=True,
+        debug_mode=DEBUG_MODE,
     )
 
     try:
