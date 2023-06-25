@@ -31,7 +31,7 @@
               {
                 "Arnold": "Oh, absolutely, Bella. And then, the ultimate plot twist. Apple cancels the project! I mean, what an M. Night Shyamalan moment for the tech world. The gadget we were promised, the gadget we sought... is no more.",
                 "Bella": "Yes, 'The Sixth iSense' - 'I see dead products.' What a time to be alive, Bella!"
-              },
+              }
             ]
 - function:
     name: "write_script"

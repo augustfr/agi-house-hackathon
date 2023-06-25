@@ -12,16 +12,21 @@ speech_queue = SpeechQueue()
 
 
 def run_main_loop(
-    scripter: ScriptAgent, sorter: SorterAgent, pitcher: PitchAgent, judge: JudgeAgent, transitioner: TransitionAgent
+    scripter: ScriptAgent,
+    sorter: SorterAgent,
+    pitcher: PitchAgent,
+    judge: JudgeAgent,
+    transitioner: TransitionAgent,
 ) -> bool:
-    
     memory = {
         "stories_ran": [],
         "previous_story": "",
     }
 
-    introduction_msg = """welcome to ByteFeedNews! Our 24/7 livestream is starting now!"""
-    
+    introduction_msg = (
+        """welcome to ByteFeedNews! Our 24/7 livestream is starting now!"""
+    )
+
     count = 0
     while True:
         reader = FeedReader("http://feeds.bbci.co.uk/news/rss.xml")
@@ -54,15 +59,13 @@ def run_main_loop(
         best_pitch_num = judge.judge(pitches_string)
         script = scripter.write_script(reader.read_article(best_pitch_num)["body"])
 
-
-        if(memory["previous_story"] != ""):
+        if memory["previous_story"] != "":
             speech_queue.add_text(introduction_msg, "Arnold")
         else:
-            transition = transitioner.generate_transition(script, memory["previous_story"])
-            speech_queue.add_text(transition['transition'], "Arnold")
-
-        print(script)
-
+            transition = transitioner.generate_transition(
+                script, memory["previous_story"]
+            )
+            speech_queue.add_text(transition["transition"], "Arnold")
 
         for line in script:
             # get both keys as strings and values as strings
