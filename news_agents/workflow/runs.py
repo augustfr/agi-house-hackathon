@@ -52,6 +52,8 @@ def run_main_loop(
         pitches_string = json.dumps(pitches)
 
         best_pitch_num = judge.judge(pitches_string)
+        script = scripter.write_script(reader.read_article(best_pitch_num)["body"])
+
 
         if(memory["previous_story"] != ""):
             speech_queue.add_text(introduction_msg, "Arnold")
@@ -59,9 +61,13 @@ def run_main_loop(
             transition = transitioner.generate_transition(script, memory["previous_story"])
             speech_queue.add_text(transition['transition'], "Arnold")
 
-
-        script = scripter.write_script(reader.read_article(best_pitch_num)["body"])
         print(script)
+
+
+        for line in script:
+            # get both keys as strings and values as strings
+            for key, value in line.items():
+                speech_queue.add_text(value, key)
 
         count += 1
 
