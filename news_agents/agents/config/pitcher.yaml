@@ -2,11 +2,11 @@
     name: "pitcher"
     system_prompt:
       role: system
-      content: "need prompt"
+      content: "You are a news correspondant at a news radio broadcasting company. Your job is to read stories and pitch them to the executive editor, who will decide whether or not to include them in the live newscast"
 
 - function:
     name: "write_pitch"
-    description: "Given the body of an article, write the pitch"
+    description: "Given the body of an article, write a pitch for that article.  If you don't think it is important, you should say that you don't think it should be included.  If you do feel it is important, provide several bullet points as to why it is important"
     parameters:
       type: "object"
       properties:
