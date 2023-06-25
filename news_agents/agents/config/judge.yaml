@@ -1,0 +1,21 @@
+- agent:
+    name: "judge"
+    system_prompt:
+      role: system
+      content: "need prompt"
+
+- function:
+    name: "judge_pitches"
+    description: "Given a set of pitches, pick the best one and explain why"
+    parameters:
+      type: "object"
+      properties:
+        pitch_num:
+          type: "int"
+          description: "index of the best pitch"
+        reasoning:
+          type: "string"
+          description: "description of why this pitch is the best"
+      required:
+        - "pitch_num"
+        - "reasoning"

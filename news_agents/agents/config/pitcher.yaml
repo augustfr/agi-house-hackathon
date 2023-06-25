@@ -10,8 +10,8 @@
     parameters:
       type: "object"
       properties:
-        script:
+        pitch:
           type: "string"
           description: "pitch for the article"
       required:
-        - "script"
+        - "pitch"

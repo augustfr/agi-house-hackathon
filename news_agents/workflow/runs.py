@@ -1,12 +1,11 @@
 from news_agents.agents.script_agent import ScriptAgent
 from news_agents.agents.sorter_agent import SorterAgent
 from news_agents.agents.pitch_agent import PitchAgent
+from news_agents.agents.judge_agent import JudgeAgent
 
 
 def run_main_loop(
-    scripter: ScriptAgent,
-    sorter: SorterAgent,
-    pitcher: PitchAgent,
+    scripter: ScriptAgent, sorter: SorterAgent, pitcher: PitchAgent, judge: JudgeAgent
 ) -> bool:
     summary = scripter.write_script(
         """Immediately after another media event held the following September, Apple removed almost all mentions of AirPower from its website.[5] There were reportedly several development issues that led to this decision, with heat management, inter-device communication and speed, as well as mechanical and interference issues all being rumored.[6] Reportedly, the main engineering issue came from including coils for two charging standards, as the Apple Watch uses a proprietary non-Qi standard.[7] Blogger John Gruber, known for his close connections with Apple, wrote that he had heard of issues with the device’s design: "Something about the multi-coil design getting too hot — way too hot. There are engineers who looked at AirPower’s design and said it could never work thermally."[8]
