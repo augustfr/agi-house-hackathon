@@ -27,7 +27,7 @@ class FeedReader:
             return {
                 "error": str(e),
             }
-
+        
 
 reader = FeedReader("http://feeds.bbci.co.uk/news/rss.xml")
 # article = reader.read_article(0)  # Get the first article.
