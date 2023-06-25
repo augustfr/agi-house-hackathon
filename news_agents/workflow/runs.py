@@ -7,6 +7,18 @@ from news_agents.agents.judge_agent import JudgeAgent
 def run_main_loop(
     scripter: ScriptAgent, sorter: SorterAgent, pitcher: PitchAgent, judge: JudgeAgent
 ) -> bool:
+    # basic workflow idea
+
+    # do something to get a list of headlines
+    # sorted_headlines = sorter.sort_headlines(headlines)
+    # pitches = []
+    # for headline in sorted_headlines:
+    #     pitch = pitcher.pitch(headline)
+    #     pitches += pitch # this will needed to be parsed before this will work
+    # best_pitch = judge.judge(pitches)
+    # script = scripter.write_script(best_pitch)
+    # read script
+
     summary = scripter.write_script(
         """Russia says Wagner Group’s leader will move to Belarus after his rebellious march challenged Putin
           The ultra-wealthy have dangerous pastimes. Who pays when they need saving?
