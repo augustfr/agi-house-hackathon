@@ -7,8 +7,18 @@ from news_agents.agents.judge_agent import JudgeAgent
 from news_agents.agents.transition_agent import TransitionAgent
 from news_agents.rss import FeedReader
 from news_agents.speech.voice import SpeechQueue
-
+from traceback import print_exc
 speech_queue = SpeechQueue()
+
+def retry_on_failure(func, *args, retries=10, **kwargs):
+    for i in range(retries):
+        try:
+            result = func(*args, **kwargs)
+            return result
+        except Exception as e:
+            print('got invalid JSON response, retrying...')
+            if i == retries - 1:
+                raise e
 
 
 def run_main_loop(
@@ -18,6 +28,7 @@ def run_main_loop(
     judge: JudgeAgent,
     transitioner: TransitionAgent,
 ) -> bool:
+            
     memory = {
         "stories_ran": [],
         "previous_story": "",
@@ -29,51 +40,57 @@ def run_main_loop(
 
     count = 0
     while True:
-        reader = FeedReader("http://feeds.bbci.co.uk/news/rss.xml")
-        feed = ""
-        headlines = ""
-        for idx, article in enumerate(reader.feed):
-            index = "index: " + str(idx) + "\n"
-            title = "title: " + article["title"] + "\n"
-            summary = "summary: " + article["summary"] + "\n"
-            headlines += index
-            feed += index
-            headlines += title
-            feed += title
-            headlines += summary
-            feed += summary
-            feed += "link: " + article["link"] + "\n"
-            feed += "published: " + article["published"] + "\n"
-            feed += "\n"
+        try:
+            reader = FeedReader("http://feeds.bbci.co.uk/news/rss.xml")
+            feed = ""
+            headlines = ""
+            for idx, article in enumerate(reader.feed):
+                index = "index: " + str(idx) + "\n"
+                title = "title: " + article["title"] + "\n"
+                summary = "summary: " + article["summary"] + "\n"
+                headlines += index
+                feed += index
+                headlines += title
+                feed += title
+                headlines += summary
+                feed += summary
+                feed += "link: " + article["link"] + "\n"
+                feed += "published: " + article["published"] + "\n"
+                feed += "\n"
 
-        sorted_headlines = sorter.sort_headlines(headlines)
-        pitches = []
-        for headline in sorted_headlines:
-            index = headline["index"]
-            body = reader.read_article(index)["body"]
-            pitch = pitcher.write_pitch(body)
-            pitches.append({"index": index, "pitch": pitch})
+            sorted_headlines = sorter.sort_headlines(headlines)
+            pitches = []
+            for headline in sorted_headlines:
+                index = headline["index"]
+                body = reader.read_article(index)["body"]
+                pitch = retry_on_failure(pitcher.write_pitch, body)
+                pitches.append({"index": index, "pitch": pitch})
 
-        pitches_string = json.dumps(pitches)
+            pitches_string = json.dumps(pitches)
 
-        best_pitch_num = judge.judge(pitches_string)
-        script = scripter.write_script(reader.read_article(best_pitch_num)["body"])
+            best_pitch_num = retry_on_failure(judge.judge, pitches_string)
 
-        if memory["previous_story"] != "":
-            speech_queue.add_text(introduction_msg, "Arnold")
-        else:
-            transition = transitioner.generate_transition(
-                script, memory["previous_story"]
-            )
-            speech_queue.add_text(transition["transition"], "Arnold")
+            script = retry_on_failure(scripter.write_script, reader.read_article(best_pitch_num)["body"])
 
-        speech_queue.start()
 
-        for line in script:
-            # get both keys as strings and values as strings
-            for key, value in line.items():
-                speech_queue.add_text(value, key)
+            if memory["previous_story"] == "":
+                speech_queue.add_text(introduction_msg, "Arnold")
+            else:
+                transition = retry_on_failure(transitioner.generate_transition, script, memory["previous_story"])
 
-        count += 1
+                speech_queue.add_text(transition["transition"], "Arnold")
+
+            speech_queue.start()
+
+            for line in script:
+                # get both keys as strings and values as strings
+                for key, value in line.items():
+                    speech_queue.add_text(value, key)
+
+            count += 1
+        except Exception as e:
+            print_exc()
+
+
 
     # read script
