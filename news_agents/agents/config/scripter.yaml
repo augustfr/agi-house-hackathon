@@ -3,15 +3,47 @@
     system_prompt:
       role: system
       content: "You are a news copywriter at a news broadcasting company. Your job is to take a news article and summarize it in a way that a radio news broadcaster can read on the air, targeting a size of 160 words."
-
+    few_shot_prompt:
+      - role: user
+        content: >
+          Here is the article:
+          Immediately after another media event held the following September, Apple removed almost all mentions of AirPower from its website.[5] There were reportedly several development issues that led to this decision, with heat management, inter-device communication and speed, as well as mechanical and interference issues all being rumored.[6] Reportedly, the main engineering issue came from including coils for two charging standards, as the Apple Watch uses a proprietary non-Qi standard.[7] Blogger John Gruber, known for his close connections with Apple, wrote that he had heard of issues with the device's design: "Something about the multi-coil design getting too hot — way too hot. There are engineers who looked at AirPower's design and said it could never work thermally."[8]
+          AirPower was still mentioned in the packaging of several Apple products, including iPhone XS and iPhone XR,[9] and in January 2019 media outlets reported that AirPower may have entered production.[10] On March 25, 2019, Apple released iOS 12.2 with support for AirPower. On March 26, 2019, Apple shipped the Wireless Charging Case for AirPods featuring AirPower on the packaging. Also in late March, Apple secured a trademark on the AirPower name.[11] 
+          However, on March 29, 2019, Dan Riccio, Apple's senior vice president of Hardware Engineering, said in a statement emailed to TechCrunch: "After much effort, we've concluded AirPower will not achieve our high standards and we have canceled the project."[12] The move was unprecedented for Apple as it had never previously canceled an announced hardware product.[13]
+      - role: assistant
+        content: None
+        function_call:
+          name: write_script
+          arguments: >
+            [
+              {
+                "broadcaster_0": "So, Jim, did you hear about Apple's AirPower? Apparently it's become the technological equivalent of a myth.",
+                "broadcaster_1": "Oh, the Loch Ness monster of gadgets, you mean? Yeah, I've heard. Rumor has it, it ran hotter than a summer in Death Valley.",
+              },
+              {
+                "broadcaster_0": "Exactly, Steve! And speaking of summer, did you know that even after Apple wiped the AirPower off their website, they still had its name on the packaging of some products? Like a secret message in a bottle drifting in the tech ocean.",
+                "broadcaster_1": "Maybe it was their version of a 'Where's Waldo?' game. 'Find the AirPower mention on your new iPhone box!'",
+              },
+              {
+                "broadcaster_0": "Oh, and let's not forget about the Wireless Charging Case for AirPods. They even had AirPower's name on it! That's like slapping a unicorn sticker on your car and saying it runs on magic.",
+                "broadcaster_1": "Haha, right, Jim! Perhaps the next product will be the iUnicorn. But let's be real, we'd probably still buy it.",
+              },
+              {
+                "broadcaster_0": "Oh, absolutely, Steve. And then, the ultimate plot twist. Apple cancels the project! I mean, what an M. Night Shyamalan moment for the tech world. The gadget we were promised, the gadget we sought... is no more.",
+                "broadcaster_1": "Yes, 'The Sixth iSense' - 'I see dead products.' What a time to be alive, Jim!",
+              },
+            ]
 - function:
     name: "write_script"
-    description: "Given the body of an article, write the news broadcast script"
+    description: "Given the body of an article, write the news broadcast conversation for the article. Make sure that the broadcasters are comical and entertaining, but also that they convey the important information in the article. It's ok for them to have differing opinions."
     parameters:
       type: "object"
       properties:
-        script:
+        broadcaster_0:
           type: "string"
-          description: "script for the article"
+          description: "message for the first broadcaster"
+        broadcaster_1:
+          type: "string"
+          description: "message for the second broadcaster"
       required:
         - "script"
