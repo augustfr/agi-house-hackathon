@@ -14,7 +14,7 @@
           type: "string"
           description: "description of why this pitch is the best"
         pitch_num:
-          type: "int"
+          type: "integer"
           description: "index of the best pitch"
       required:
         - "pitch_num"

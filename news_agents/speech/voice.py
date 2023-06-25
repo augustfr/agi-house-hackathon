@@ -3,11 +3,13 @@ from typing import List
 from elevenlabs import generate, stream
 from elevenlabs import set_api_key
 from environs import Env
+
 env = Env()
 env.read_env()
 set_api_key(env("ELEVEN_API_KEY"))
 
 from threading import Thread
+
 
 class SpeechQueue:
     def __init__(self):
@@ -47,5 +49,3 @@ class SpeechQueue:
 # speech_queue.add_text("Now, this is Bella.", "Bella")
 
 # speech_queue.add_text("Sup man", "Bella")
-
-

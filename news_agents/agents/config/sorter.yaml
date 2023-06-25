@@ -7,14 +7,37 @@
       - role: user
         content: >
           Here are the headlines:
-          Russia says Wagner Group's leader will move to Belarus after his rebellious march challenged Putin
-          The ultra-wealthy have dangerous pastimes. Who pays when they need saving?
-          Orca pod attacks Ocean Race boats
-          Four players suspended after hostile soccer game between US and Mexico
-          Israeli military kills Palestinian gunman as settlers rampage through Palestinian town
-          Packages from China are surging into the United States. Some say $800 duty-free limit was a mistake
-          One year later, the Supreme Court's abortion decision is both scorned and praised
-          Speaker McCarthy supports expunging Trump's impeachments over Ukraine and Jan. 6
+
+          index: 1
+          title: Russia says Wagner Group's leader will move to Belarus after his rebellious march challenged Putin
+          link: https://www.bbc.co.uk/news/business-65997926?at_medium=RSS&at_campaign=KARANGA
+          published: Sat, 24 Jun 2023 23:04:45 GMT
+
+          index: 2
+          title: Israeli military kills Palestinian gunman as settlers rampage through Palestinian town
+
+          link: https://www.bbc.co.uk/news/world-africa-65947114?at_medium=RSS&at_campaign=KARANGA
+          published: Sat, 24 Jun 2023 23:15:54 GMT
+
+          index: 3
+          title: Migrant deaths: Four players suspended after hostile soccer game between US and Mexico
+          link: https://www.bbc.co.uk/news/world-latin-america-65932680?at_medium=RSS&at_campaign=KARANGA
+          published: Sat, 24 Jun 2023 00:10:37 GMT
+
+          index: 4
+          title: The ultra-wealthy have dangerous pastimes. Who pays when they need saving?
+          link: https://www.bbc.co.uk/news/business-65997926?at_medium=RSS&at_campaign=KARANGA
+          published: Sat, 24 Jun 2023 23:04:45 GMT
+
+          index: 5
+          title: Zimbabwe's obsession with Animal Farm as novel gets Shona translation
+          link: https://www.bbc.co.uk/news/world-africa-65947114?at_medium=RSS&at_campaign=KARANGA
+          published: Sat, 24 Jun 2023 23:15:54 GMT
+
+          index: 6
+          title: Speaker McCarthy supports expunging Trump's impeachments over Ukraine and Jan. 6
+          link: https://www.bbc.co.uk/news/world-latin-america-65932680?at_medium=RSS&at_campaign=KARANGA
+          published: Sat, 24 Jun 2023 00:10:37 GMT
       - role: assistant
         content: None
         function_call:
@@ -24,14 +47,17 @@
               {
                 "specialist": "International", 
                 "headline": "Russia says Wagner Group's leader will move to Belarus after his rebellious march challenged Putin"
+                "index": 1
               },
               {
                 "specialist": "Sports",
                 "headline": "Four players suspended after hostile soccer game between US and Mexico"
+                "index": 3
               },
               {
                 "specialist": "Domestic",
                 "headline": "Speaker McCarthy supports expunging Trump's impeachments over Ukraine and Jan. 6"
+                "index": 6
               }
             ]
 
@@ -47,6 +73,10 @@
         headline:
           type: "string"
           description: "headline"
+        index:
+          type: "integer"
+          description: "index of the headline"
       required:
         - "specialist"
         - "headline"
+        - "index"

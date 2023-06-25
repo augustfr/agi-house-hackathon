@@ -6,7 +6,7 @@ class JudgeAgent(Agent):
     def __init__(self, **kwargs):
         Agent.__init__(self, **kwargs)
 
-    def write_pitch(self, file_content):
+    def judge(self, file_content):
         self.update_message_thread(
             "user", "Here are the pitches to judge: " + file_content
         )
