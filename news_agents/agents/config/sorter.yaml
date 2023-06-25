@@ -7,20 +7,33 @@
       - role: user
         content: >
           Here are the headlines:
-          Russia says Wagner Group’s leader will move to Belarus after his rebellious march challenged Putin
+          Russia says Wagner Group's leader will move to Belarus after his rebellious march challenged Putin
           The ultra-wealthy have dangerous pastimes. Who pays when they need saving?
           Orca pod attacks Ocean Race boats
           Four players suspended after hostile soccer game between US and Mexico
           Israeli military kills Palestinian gunman as settlers rampage through Palestinian town
           Packages from China are surging into the United States. Some say $800 duty-free limit was a mistake
-          One year later, the Supreme Court’s abortion decision is both scorned and praised
-          Speaker McCarthy supports expunging Trump’s impeachments over Ukraine and Jan. 6
+          One year later, the Supreme Court's abortion decision is both scorned and praised
+          Speaker McCarthy supports expunging Trump's impeachments over Ukraine and Jan. 6
       - role: assistant
         content: None
         function_call:
           name: sort_headlines
           arguments: >
-            "[{"specialist": "International", "headline": "Russia says Wagner Group’s leader will move to Belarus after his rebellious march challenged Putin"},{"specialist": "Sports","headline": "Four players suspended after hostile soccer game between US and Mexico"},{"specialist": "Domestic","headline": "Speaker McCarthy supports expunging Trump’s impeachments over Ukraine and Jan. 6"}}"
+            [
+              {
+                "specialist": "International", 
+                "headline": "Russia says Wagner Group's leader will move to Belarus after his rebellious march challenged Putin"
+              },
+              {
+                "specialist": "Sports",
+                "headline": "Four players suspended after hostile soccer game between US and Mexico"
+              },
+              {
+                "specialist": "Domestic",
+                "headline": "Speaker McCarthy supports expunging Trump's impeachments over Ukraine and Jan. 6"
+              }
+            ]
 
 - function:
     name: "sort_headlines"
