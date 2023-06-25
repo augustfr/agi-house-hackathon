@@ -1,0 +1,17 @@
+- agent:
+    name: "scripter"
+    system_prompt:
+      role: system
+      content: "You are a news copywriter at a news broadcasting company. Your job is to take a news article and summarize it in a way that a radio news broadcaster can read on the air, targeting a size of 160 words."
+
+- function:
+    name: "write_script"
+    description: "Given the body of an article, the the news broadcast script"
+    parameters:
+      type: "object"
+      properties:
+        script:
+          type: "string"
+          description: "script for the article"
+      required:
+        - "script"
