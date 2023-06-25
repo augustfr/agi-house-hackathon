@@ -60,7 +60,7 @@ def run_main_loop(
                 feed += "published: " + article["published"] + "\n"
                 feed += "\n"
 
-            original_dict = sorter.sort_headlines(headlines)
+            original_dict = sorter.sort_headlines(headlines, memory["stories_ran"])
             sorted_headlines = [
                 {
                     "specialist": original_dict["specialist_1"],
