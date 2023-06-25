@@ -1,12 +1,12 @@
-from news_agents.agents.summarizer_agent import SummarizerAgent
+from news_agents.agents.script_agent import ScriptAgent
 from news_agents.agents.sorter_agent import SorterAgent
 
 
 def run_main_loop(
-    summarizer: SummarizerAgent,
+    scripter: ScriptAgent,
     sorter: SorterAgent,
 ) -> bool:
-    summary = summarizer.get_file_summary(
+    summary = scripter.get_file_summary(
         """Immediately after another media event held the following September, Apple removed almost all mentions of AirPower from its website.[5] There were reportedly several development issues that led to this decision, with heat management, inter-device communication and speed, as well as mechanical and interference issues all being rumored.[6] Reportedly, the main engineering issue came from including coils for two charging standards, as the Apple Watch uses a proprietary non-Qi standard.[7] Blogger John Gruber, known for his close connections with Apple, wrote that he had heard of issues with the device’s design: "Something about the multi-coil design getting too hot — way too hot. There are engineers who looked at AirPower’s design and said it could never work thermally."[8]
 
 AirPower was still mentioned in the packaging of several Apple products, including iPhone XS and iPhone XR,[9] and in January 2019 media outlets reported that AirPower may have entered production.[10] On March 25, 2019, Apple released iOS 12.2 with support for AirPower. On March 26, 2019, Apple shipped the Wireless Charging Case for AirPods featuring AirPower on the packaging. Also in late March, Apple secured a trademark on the AirPower name.[11]

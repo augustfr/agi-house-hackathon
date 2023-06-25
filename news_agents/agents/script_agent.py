@@ -2,7 +2,7 @@ import json
 from news_agents.agents.agent import Agent
 
 
-class SummarizerAgent(Agent):
+class ScriptAgent(Agent):
     def __init__(self, **kwargs):
         Agent.__init__(self, **kwargs)
 
@@ -24,6 +24,5 @@ class SummarizerAgent(Agent):
             print("==========RAW SUMMARIZER OUTPUT==========")
             print(response_content)
             print("\n==========END RAW SUMMARIZER OUTPUT==========")
-
 
         return json.loads(response_content).get("summary")
