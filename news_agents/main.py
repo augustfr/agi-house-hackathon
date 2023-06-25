@@ -4,6 +4,7 @@ from news_agents.agents.script_agent import ScriptAgent
 from news_agents.agents.sorter_agent import SorterAgent
 from news_agents.agents.pitch_agent import PitchAgent
 from news_agents.agents.judge_agent import JudgeAgent
+from news_agents.agents.transition_agent import TransitionAgent
 from news_agents.llms.openai_gpt import OpenAIGPT
 from news_agents.workflow.runs import run_main_loop
 
@@ -57,7 +58,14 @@ if __name__ == "__main__":
         debug_mode=DEBUG_MODE,
     )
 
+    transitioner = TransitionAgent(
+        name="transitioner",
+        language_model=main_lm,
+        max_tokens=MAX_TOKENS,
+        debug_mode=DEBUG_MODE,
+    )
+
     try:
-        run_main_loop(scripter, sorter, pitcher, judge)
+        run_main_loop(scripter, sorter, pitcher, judge, transitioner)
     except Exception as e:
         print(e)

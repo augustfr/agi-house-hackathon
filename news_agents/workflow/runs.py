@@ -6,40 +6,63 @@ from news_agents.agents.pitch_agent import PitchAgent
 from news_agents.agents.judge_agent import JudgeAgent
 from news_agents.agents.transition_agent import TransitionAgent
 from news_agents.rss import FeedReader
+from news_agents.speech.voice import SpeechQueue
+
+speech_queue = SpeechQueue()
 
 
 def run_main_loop(
-    scripter: ScriptAgent, sorter: SorterAgent, pitcher: PitchAgent, judge: JudgeAgent
+    scripter: ScriptAgent, sorter: SorterAgent, pitcher: PitchAgent, judge: JudgeAgent, transitioner: TransitionAgent
 ) -> bool:
-    reader = FeedReader("http://feeds.bbci.co.uk/news/rss.xml")
-    feed = ""
-    headlines = ""
-    for idx, article in enumerate(reader.feed):
-        index = "index: " + str(idx) + "\n"
-        title = "title: " + article["title"] + "\n"
-        summary = "summary: " + article["summary"] + "\n"
-        headlines += index
-        feed += index
-        headlines += title
-        feed += title
-        headlines += summary
-        feed += summary
-        feed += "link: " + article["link"] + "\n"
-        feed += "published: " + article["published"] + "\n"
-        feed += "\n"
+    
+    memory = {
+        "stories_ran": [],
+        "previous_story": "",
+    }
 
-    sorted_headlines = sorter.sort_headlines(headlines)
-    pitches = []
-    for headline in sorted_headlines:
-        index = headline["index"]
-        body = reader.read_article(index)["body"]
-        pitch = pitcher.write_pitch(body)
-        pitches.append({"index": index, "pitch": pitch})
+    introduction_msg = """welcome to ByteFeedNews! Our 24/7 livestream is starting now!"""
+    
+    count = 0
+    while True:
+        reader = FeedReader("http://feeds.bbci.co.uk/news/rss.xml")
+        feed = ""
+        headlines = ""
+        for idx, article in enumerate(reader.feed):
+            index = "index: " + str(idx) + "\n"
+            title = "title: " + article["title"] + "\n"
+            summary = "summary: " + article["summary"] + "\n"
+            headlines += index
+            feed += index
+            headlines += title
+            feed += title
+            headlines += summary
+            feed += summary
+            feed += "link: " + article["link"] + "\n"
+            feed += "published: " + article["published"] + "\n"
+            feed += "\n"
 
-    pitches_string = json.dumps(pitches)
+        sorted_headlines = sorter.sort_headlines(headlines)
+        pitches = []
+        for headline in sorted_headlines:
+            index = headline["index"]
+            body = reader.read_article(index)["body"]
+            pitch = pitcher.write_pitch(body)
+            pitches.append({"index": index, "pitch": pitch})
 
-    best_pitch_num = judge.judge(pitches_string)
+        pitches_string = json.dumps(pitches)
 
-    script = scripter.write_script(reader.read_article(best_pitch_num)["body"])
+        best_pitch_num = judge.judge(pitches_string)
+
+        if(memory["previous_story"] != ""):
+            speech_queue.add_text(introduction_msg, "Arnold")
+        else:
+            transition = transitioner.generate_transition(script, memory["previous_story"])
+            speech_queue.add_text(transition['transition'], "Arnold")
+
+
+        script = scripter.write_script(reader.read_article(best_pitch_num)["body"])
+        print(script)
+
+        count += 1
 
     # read script

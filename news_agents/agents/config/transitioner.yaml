@@ -1,5 +1,5 @@
 - agent:
-    name: "pitcher"
+    name: "transitioner"
     system_prompt:
       role: system
       content: "You are a writer at a news radio broadcasting company called ByteFeedNews."
