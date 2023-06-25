@@ -25,4 +25,4 @@ class JudgeAgent(Agent):
             print(response_content)
             print("\n==========END RAW JUDGE OUTPUT==========")
 
-        return json.loads(response_content).get("summary")
+        return json.loads(response_content).get("pitch_num")

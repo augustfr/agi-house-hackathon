@@ -25,4 +25,4 @@ class ScriptAgent(Agent):
             print(response_content)
             print("\n==========END RAW SCRIPTER OUTPUT==========")
 
-        return json.loads(response_content).get("summary")
+        return json.loads(response_content)

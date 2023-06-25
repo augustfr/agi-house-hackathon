@@ -37,7 +37,7 @@ def run_main_loop(
 
     pitches_string = json.dumps(pitches)
 
-    best_pitch = judge.judge(pitches_string)
+    best_pitch_num = judge.judge(pitches_string)
 
-    # script = scripter.write_script(best_pitch)
+    script = scripter.write_script(reader.read_article(best_pitch_num)["body"])
     # read script
