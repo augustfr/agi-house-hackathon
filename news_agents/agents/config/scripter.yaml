@@ -17,20 +17,20 @@
           arguments: >
             [
               {
-                "broadcaster_0": "So, Jim, did you hear about Apple's AirPower? Apparently it's become the technological equivalent of a myth.",
-                "broadcaster_1": "Oh, the Loch Ness monster of gadgets, you mean? Yeah, I've heard. Rumor has it, it ran hotter than a summer in Death Valley."
+                "Arnold": "So, Bella, did you hear about Apple's AirPower? Apparently it's become the technological equivalent of a myth.",
+                "Bella": "Oh, the Loch Ness monster of gadgets, you mean? Yeah, I've heard. Rumor has it, it ran hotter than a summer in Death Valley."
               },
               {
-                "broadcaster_0": "Exactly, Steve! And speaking of summer, did you know that even after Apple wiped the AirPower off their website, they still had its name on the packaging of some products? Like a secret message in a bottle drifting in the tech ocean.",
-                "broadcaster_1": "Maybe it was their version of a 'Where's Waldo?' game. 'Find the AirPower mention on your new iPhone box!'"
+                "Arnold": "Exactly, Arnold! And speaking of summer, did you know that even after Apple wiped the AirPower off their website, they still had its name on the packaging of some products? Like a secret message in a bottle drifting in the tech ocean.",
+                "Bella": "Maybe it was their version of a 'Where's Waldo?' game. 'Find the AirPower mention on your new iPhone box!'"
               },
               {
-                "broadcaster_0": "Oh, and let's not forget about the Wireless Charging Case for AirPods. They even had AirPower's name on it! That's like slapping a unicorn sticker on your car and saying it runs on magic.",
-                "broadcaster_1": "Haha, right, Jim! Perhaps the next product will be the iUnicorn. But let's be real, we'd probably still buy it."
+                "Arnold": "Oh, and let's not forget about the Wireless Charging Case for AirPods. They even had AirPower's name on it! That's like slapping a unicorn sticker on your car and saying it runs on magic.",
+                "Bella": "Haha, right, Bella! Perhaps the next product will be the iUnicorn. But let's be real, we'd probably still buy it."
               },
               {
-                "broadcaster_0": "Oh, absolutely, Steve. And then, the ultimate plot twist. Apple cancels the project! I mean, what an M. Night Shyamalan moment for the tech world. The gadget we were promised, the gadget we sought... is no more.",
-                "broadcaster_1": "Yes, 'The Sixth iSense' - 'I see dead products.' What a time to be alive, Jim!"
+                "Arnold": "Oh, absolutely, Bella. And then, the ultimate plot twist. Apple cancels the project! I mean, what an M. Night Shyamalan moment for the tech world. The gadget we were promised, the gadget we sought... is no more.",
+                "Bella": "Yes, 'The Sixth iSense' - 'I see dead products.' What a time to be alive, Bella!"
               },
             ]
 - function:
@@ -39,10 +39,10 @@
     parameters:
       type: "object"
       properties:
-        broadcaster_0:
+        Arnold:
           type: "string"
           description: "message for the first broadcaster"
-        broadcaster_1:
+        Bella:
           type: "string"
           description: "message for the second broadcaster"
       required:
