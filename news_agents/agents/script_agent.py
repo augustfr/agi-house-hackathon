@@ -6,8 +6,10 @@ class ScriptAgent(Agent):
     def __init__(self, **kwargs):
         Agent.__init__(self, **kwargs)
 
-    def get_file_summary(self, file_content):
-        self.update_message_thread("user", "The article to summarize: " + file_content)
+    def write_script(self, file_content):
+        self.update_message_thread(
+            "user", "The article to write the script for: " + file_content
+        )
         messages = self.message_thread
         completion = self.language_model.call(
             messages=messages,
@@ -21,8 +23,8 @@ class ScriptAgent(Agent):
             "arguments"
         ]
         if self.debug_mode:
-            print("==========RAW SUMMARIZER OUTPUT==========")
+            print("==========RAW SCRIPTER OUTPUT==========")
             print(response_content)
-            print("\n==========END RAW SUMMARIZER OUTPUT==========")
+            print("\n==========END RAW SCRIPTER OUTPUT==========")
 
         return json.loads(response_content).get("summary")

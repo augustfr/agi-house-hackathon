@@ -1,6 +1,6 @@
 import openai
 from environs import Env
-from news_agents.agents.script_agent import SummarizerAgent
+from news_agents.agents.script_agent import ScriptAgent
 from news_agents.agents.sorter_agent import SorterAgent
 from news_agents.llms.openai_gpt import OpenAIGPT
 from news_agents.workflow.runs import run_main_loop
@@ -22,8 +22,8 @@ if __name__ == "__main__":
     )
 
     summarizer = None
-    summarizer = SummarizerAgent(
-        name="summarizer",
+    summarizer = ScriptAgent(
+        name="scripter",
         language_model=main_lm,
         max_tokens=MAX_TOKENS,
         debug_mode=True,
