@@ -2,13 +2,15 @@ import json
 from news_agents.agents.agent import Agent
 
 
-class SorterAgent(Agent):
+class PitchAgent(Agent):
     def __init__(self, **kwargs):
         Agent.__init__(self, **kwargs)
 
-    def sort_headlines(self, headlines):
+    def write_pitch(self, file_content):
+        self.update_message_thread(
+            "user", "The article to write the pitch for: " + file_content
+        )
         messages = self.message_thread
-        self.update_message_thread("user", "Here are the headlines: " + headlines)
         completion = self.language_model.call(
             messages=messages,
             functions=[self.function],
@@ -19,8 +21,8 @@ class SorterAgent(Agent):
             "arguments"
         ]
         if self.debug_mode:
-            print("==========RAW SORTER OUTPUT==========")
+            print("==========RAW PITCHER OUTPUT==========")
             print(response_content)
-            print("\n==========END RAW SORTER OUTPUT==========")
+            print("\n==========END RAW PITCHER OUTPUT==========")
 
-        return json.loads(response_content)
+        return json.loads(response_content).get("summary")

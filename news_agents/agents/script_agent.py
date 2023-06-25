@@ -17,8 +17,6 @@ class ScriptAgent(Agent):
             function_call={"name": self.function.get("name")},
         )
 
-        total_tokens = sum(self.message_token_count(msg) for msg in messages)
-
         response_content = completion["choices"][0]["message"]["function_call"][
             "arguments"
         ]

@@ -1,0 +1,17 @@
+- agent:
+    name: "pitcher"
+    system_prompt:
+      role: system
+      content: "need prompt"
+
+- function:
+    name: "write_pitch"
+    description: "Given the body of an article, write the pitch"
+    parameters:
+      type: "object"
+      properties:
+        script:
+          type: "string"
+          description: "pitch for the article"
+      required:
+        - "script"

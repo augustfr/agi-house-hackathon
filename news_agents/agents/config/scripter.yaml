@@ -6,7 +6,7 @@
 
 - function:
     name: "write_script"
-    description: "Given the body of an article, the the news broadcast script"
+    description: "Given the body of an article, write the news broadcast script"
     parameters:
       type: "object"
       properties:
