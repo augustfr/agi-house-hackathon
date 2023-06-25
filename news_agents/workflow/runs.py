@@ -8,8 +8,10 @@ from news_agents.agents.transition_agent import TransitionAgent
 from news_agents.rss import FeedReader
 from news_agents.speech.voice import SpeechQueue
 from traceback import print_exc
+
 speech_queue = SpeechQueue()
 from time import sleep
+
 
 def retry_on_failure(func, *args, retries=10, **kwargs):
     for i in range(retries):
@@ -17,7 +19,7 @@ def retry_on_failure(func, *args, retries=10, **kwargs):
             result = func(*args, **kwargs)
             return result
         except Exception as e:
-            print('got invalid JSON response, retrying...')
+            print("got invalid JSON response, retrying...")
             if i == retries - 1:
                 raise e
 
@@ -29,7 +31,6 @@ def run_main_loop(
     judge: JudgeAgent,
     transitioner: TransitionAgent,
 ) -> bool:
-            
     memory = {
         "stories_ran": [],
         "previous_story": "",
@@ -59,12 +60,24 @@ def run_main_loop(
                 feed += "published: " + article["published"] + "\n"
                 feed += "\n"
 
-            sorted_headlines = sorter.sort_headlines(headlines, memory["stories_ran"])
-            print("sorted headlines")
-            # if sorted_headlines is a dict
-            if isinstance(sorted_headlines, dict):
-                sorted_headlines = [sorted_headlines]
-            print(sorted_headlines)
+            original_dict = sorter.sort_headlines(headlines)
+            sorted_headlines = [
+                {
+                    "specialist": original_dict["specialist_1"],
+                    "headline": original_dict["headline_1"],
+                    "index": original_dict["index_1"],
+                },
+                {
+                    "specialist": original_dict["specialist_2"],
+                    "headline": original_dict["headline_2"],
+                    "index": original_dict["index_2"],
+                },
+                {
+                    "specialist": original_dict["specialist_3"],
+                    "headline": original_dict["headline_3"],
+                    "index": original_dict["index_3"],
+                },
+            ]
             pitches = []
             for headline in sorted_headlines:
                 index = headline["index"]
@@ -76,13 +89,16 @@ def run_main_loop(
 
             best_pitch_num = retry_on_failure(judge.judge, pitches_string)
 
-            script = retry_on_failure(scripter.write_script, reader.read_article(best_pitch_num)["body"])
-            memory['stories_ran'].append(reader.feed[best_pitch_num])
+            script = retry_on_failure(
+                scripter.write_script, reader.read_article(best_pitch_num)["body"]
+            )
 
             if memory["previous_story"] == "":
                 speech_queue.add_text(introduction_msg, "Arnold")
             else:
-                transition = retry_on_failure(transitioner.generate_transition, script, memory["previous_story"])
+                transition = retry_on_failure(
+                    transitioner.generate_transition, script, memory["previous_story"]
+                )
 
                 speech_queue.add_text(transition["transition"], "Arnold")
 
@@ -99,7 +115,3 @@ def run_main_loop(
                 sleep(1000000)
         except Exception as e:
             print_exc()
-
-
-
-    # read script

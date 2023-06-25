@@ -2,7 +2,7 @@
     name: "scripter"
     system_prompt:
       role: system
-      content: "You are a news copywriter at a news broadcasting company. Your job is to take a news article and summarize it in a way that a radio news broadcaster can read on the air, targeting a size of 160 words."
+      content: "You are a news copywriter at a news broadcasting company. Your job is to take a news article and write a script between two news anchors, Arnold and Bella. The script should be hilarious and not politically correct."
     few_shot_prompt:
       - role: user
         content: >
@@ -16,34 +16,32 @@
           name: write_script
           arguments: >
             [
-              {
-                "Arnold": "So, Bella, did you hear about Apple's AirPower? Apparently it's become the technological equivalent of a myth.",
-                "Bella": "Oh, the Loch Ness monster of gadgets, you mean? Yeah, I've heard. Rumor has it, it ran hotter than a summer in Death Valley."
-              },
-              {
-                "Arnold": "Exactly, Arnold! And speaking of summer, did you know that even after Apple wiped the AirPower off their website, they still had its name on the packaging of some products? Like a secret message in a bottle drifting in the tech ocean.",
-                "Bella": "Maybe it was their version of a 'Where's Waldo?' game. 'Find the AirPower mention on your new iPhone box!'"
-              },
-              {
-                "Arnold": "Oh, and let's not forget about the Wireless Charging Case for AirPods. They even had AirPower's name on it! That's like slapping a unicorn sticker on your car and saying it runs on magic.",
-                "Bella": "Haha, right, Bella! Perhaps the next product will be the iUnicorn. But let's be real, we'd probably still buy it."
-              },
-              {
-                "Arnold": "Oh, absolutely, Bella. And then, the ultimate plot twist. Apple cancels the project! I mean, what an M. Night Shyamalan moment for the tech world. The gadget we were promised, the gadget we sought... is no more.",
-                "Bella": "Yes, 'The Sixth iSense' - 'I see dead products.' What a time to be alive, Bella!"
-              }
+            {
+            "Arnold": "So, Bella, have you heard about Apple's AirPower? It's like a fart in a spacesuit, so hyped yet so unreachable.",
+            "Bella": "Ah, the Bigfoot of gadgets? Yes, yes, I've heard. I heard it ran hotter than a three-legged dog in a chili cookoff."
+            },
+            {
+            "Arnold": "Bingo, Bella! Speaking of hot dogs, did you know Apple was so embarrassed they scrubbed AirPower off their website? But they forgot to erase its name from some product packages. Like an unwanted tattoo on a drunken night out.",
+            "Bella": "Or like finding your ex's name on your current girlfriend's tattoo list. 'Spot the AirPower mention on your shiny new iPhone box!'"
+            },
+            {
+            "Arnold": "Oh, and the height of hilarity is the Wireless Charging Case for AirPods. They had AirPower's name on it! It's like putting a 'Vegan for life' sticker on a beef burger truck.",
+            "Bella": "Haha, right, Arnold! Maybe their next product will be the iWaffle. And we'd all fall over ourselves to buy that pile of syrupy silicon."
+            },
+            {
+            "Arnold": "Indeed, Bella. Then comes the plot twist to end all plot twists. Apple kills the project! It's like George R.R. Martin took over as CEO. The gadget we were promised, the gadget we dreamt of... dead as a dodo.",
+            "Bella": "Yes, 'The Sixth iSense' - 'I smell the rotten corpse of technology.' What a riot, Arnold!"
+            }
             ]
+
 - function:
     name: "write_script"
     description: "Given the body of an article, write the news broadcast conversation for the article. Make sure that the broadcasters are comical and entertaining, but also that they convey the important information in the article. It's ok for them to have differing opinions."
     parameters:
       type: "object"
       properties:
-        Arnold:
+        conversation:
           type: "string"
-          description: "message for the first broadcaster"
-        Bella:
-          type: "string"
-          description: "message for the second broadcaster"
+          description: 'The full script for the conversation between arnold and bella in the following format: ''[{"Arnold":"message 1", "Bella":"message 1"}, {"Arnold":"message 2", "Bella":"message 2"}]'''
       required:
-        - "script"
+        - "conversation"

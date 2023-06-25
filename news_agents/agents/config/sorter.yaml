@@ -43,23 +43,17 @@
         function_call:
           name: sort_headlines
           arguments: >
-            [
-              {
-                "specialist": "International", 
-                "headline": "Russia says Wagner Group's leader will move to Belarus after his rebellious march challenged Putin",
-                "index": 1
-              },
-              {
-                "specialist": "Sports",
-                "headline": "Four players suspended after hostile soccer game between US and Mexico",
-                "index": 3
-              },
-              {
-                "specialist": "Domestic",
-                "headline": "Speaker McCarthy supports expunging Trump's impeachments over Ukraine and Jan. 6",
-                "index": 6
-              }
-            ]
+            {
+              "specialist_1": "International", 
+              "headline_1": "Russia says Wagner Group's leader will move to Belarus after his rebellious march challenged Putin",
+              "index_1": 1
+              "specialist_2": "Sports",
+              "headline_2": "Four players suspended after hostile soccer game between US and Mexico",
+              "index_2": 3
+              "specialist_3": "Domestic",
+              "headline_3": "Speaker McCarthy supports expunging Trump's impeachments over Ukraine and Jan. 6",
+              "index_3": 6
+            }
 
 - function:
     name: "sort_headlines"
@@ -67,16 +61,40 @@
     parameters:
       type: "object"
       properties:
-        specialist:
+        specialist_1:
           type: "string"
           description: "specialist type"
-        headline:
+        headline_1:
           type: "string"
           description: "headline"
-        index:
+        index_1:
+          type: "integer"
+          description: "index of the headline"
+        specialist_2:
+          type: "string"
+          description: "specialist type"
+        headline_2:
+          type: "string"
+          description: "headline"
+        index_2:
+          type: "integer"
+          description: "index of the headline"
+        specialist_3:
+          type: "string"
+          description: "specialist type"
+        headline_3:
+          type: "string"
+          description: "headline"
+        index_3:
           type: "integer"
           description: "index of the headline"
       required:
-        - "specialist"
-        - "headline"
-        - "index"
+        - "specialist_1"
+        - "headline_1"
+        - "index_1"
+        - "specialist_2"
+        - "headline_2"
+        - "index_2"
+        - "specialist_3"
+        - "headline_3"
+        - "index_3"
