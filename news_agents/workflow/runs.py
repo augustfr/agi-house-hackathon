@@ -21,7 +21,8 @@ def send_data(data):
     # print sending type:
     print("sending data type: ", type(data))
     # send data as json
-    client.sendto(json.dumps(data).encode(), server_address)
+    for obj in data:
+        client.sendto(json.dumps(obj).encode(), server_address)
 
 
 def retry_on_failure(func, *args, retries=10, **kwargs):
