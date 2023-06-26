@@ -6,22 +6,11 @@ from news_agents.agents.pitch_agent import PitchAgent
 from news_agents.agents.judge_agent import JudgeAgent
 from news_agents.agents.transition_agent import TransitionAgent
 from news_agents.rss import FeedReader
+from news_agents.speech.voice import SpeechQueue
 from traceback import print_exc
 
+speech_queue = SpeechQueue()
 from time import sleep
-
-import socket
-client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-
-server_address = ('10.1.8.110', 8080)
-client.sendto(b'Starting transmission', ('10.1.8.110', 8080))
-
-# send json data
-def send_data(data):
-    # print sending type:
-    print("sending data type: ", type(data))
-    # send data as json
-    client.sendto(json.dumps(data).encode(), server_address)
 
 
 def retry_on_failure(func, *args, retries=10, **kwargs):
@@ -105,20 +94,20 @@ def run_main_loop(
             )
 
             if memory["previous_story"] == "":
-                send_data([{"author": "Arnold", "message": introduction_msg}])
+                speech_queue.add_text(introduction_msg, "Arnold")
             else:
                 transition = retry_on_failure(
                     transitioner.generate_transition, script, memory["previous_story"]
                 )
 
-                send_data([{"author": "Arnold", "message": transition["transition"]}])
+                speech_queue.add_text(transition["transition"], "Arnold")
 
-                # speech_queue.add_text(transition["transition"], "Arnold")
+            speech_queue.start()
 
-            memory["previous_story"] = script
-
-            for s_obj in script:
-                send_data([{"author": s_obj['author'], "message": s_obj["message"]}])
+            for line in script:
+                # get both keys as strings and values as strings
+                for key, value in line.items():
+                    speech_queue.add_text(value, key)
 
             count += 1
 

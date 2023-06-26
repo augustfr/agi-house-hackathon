@@ -16,22 +16,38 @@
           name: write_script
           arguments: >
             [
-            {
-            "Arnold": "So, Bella, have you heard about Apple's AirPower? It's like a fart in a spacesuit, so hyped yet so unreachable.",
-            "Bella": "Ah, the Bigfoot of gadgets? Yes, yes, I've heard. I heard it ran hotter than a three-legged dog in a chili cookoff."
-            },
-            {
-            "Arnold": "Bingo, Bella! Speaking of hot dogs, did you know Apple was so embarrassed they scrubbed AirPower off their website? But they forgot to erase its name from some product packages. Like an unwanted tattoo on a drunken night out.",
-            "Bella": "Or like finding your ex's name on your current girlfriend's tattoo list. 'Spot the AirPower mention on your shiny new iPhone box!'"
-            },
-            {
-            "Arnold": "Oh, and the height of hilarity is the Wireless Charging Case for AirPods. They had AirPower's name on it! It's like putting a 'Vegan for life' sticker on a beef burger truck.",
-            "Bella": "Haha, right, Arnold! Maybe their next product will be the iWaffle. And we'd all fall over ourselves to buy that pile of syrupy silicon."
-            },
-            {
-            "Arnold": "Indeed, Bella. Then comes the plot twist to end all plot twists. Apple kills the project! It's like George R.R. Martin took over as CEO. The gadget we were promised, the gadget we dreamt of... dead as a dodo.",
-            "Bella": "Yes, 'The Sixth iSense' - 'I smell the rotten corpse of technology.' What a riot, Arnold!"
-            }
+              {
+                  "author":"Arnold",
+                  "message":"So, Bella, have you heard about Apple's AirPower? It's like a fart in a spacesuit, so hyped yet so unreachable."
+              },
+              {
+                  "author":"Bella",
+                  "message":"Ah, the Bigfoot of gadgets? Yes, yes, I've heard. I heard it ran hotter than a three-legged dog in a chili cookoff."
+              },
+              {
+                  "author":"Arnold",
+                  "message":"Bingo, Bella! Speaking of hot dogs, did you know Apple was so embarrassed they scrubbed AirPower off their website? But they forgot to erase its name from some product packages. Like an unwanted tattoo on a drunken night out."
+              },
+              {
+                  "author":"Bella",
+                  "message":"Or like finding your ex's name on your current girlfriend's tattoo list. 'Spot the AirPower mention on your shiny new iPhone box!'"
+              },
+              {
+                  "author":"Arnold",
+                  "message":"Oh, and the height of hilarity is the Wireless Charging Case for AirPods. They had AirPower's name on it! It's like putting a 'Vegan for life' sticker on a beef burger truck."
+              },
+              {
+                  "author":"Bella",
+                  "message":"Haha, right, Arnold! Maybe their next product will be the iWaffle. And we'd all fall over ourselves to buy that pile of syrupy silicon."
+              },
+              {
+                  "author":"Arnold",
+                  "message":"Indeed, Bella. Then comes the plot twist to end all plot twists. Apple kills the project! It's like George R.R. Martin took over as CEO. The gadget we were promised, the gadget we dreamt of... dead as a dodo."
+              },
+              {
+                  "author":"Bella",
+                  "message":"Yes, 'The Sixth iSense' - 'I smell the rotten corpse of technology.' What a riot, Arnold!"
+              }
             ]
 
 - function:
